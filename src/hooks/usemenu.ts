@@ -99,8 +99,8 @@ const getMenuItemByIds = (menus: MenuItem[], menuIds: string[]) => {
       }
     });
     /** 当菜单为菜单组的时候，从菜单组的子级取匹配的菜单项 */
-    if(findResult && findResult.isGroup) {
-      findResult = findResult.children?.find((menu) => menu.id === id)
+    if (findResult && findResult.isGroup) {
+      findResult = findResult.children?.find((menu) => menu.id === id);
     }
 
     if (findResult) {
@@ -144,17 +144,6 @@ const getMenuItemByIds = (menus: MenuItem[], menuIds: string[]) => {
   return resultList;
 };
 
-/**
- * 通过菜单项id获取当前菜单项和当前菜单项目的子级
- * @param menus 菜单项数组
- * @param menuIds 菜单项id数组
- * @param key 菜单项对象的键名
- */
-const getMenuItemById = (menus: MenuItem[], menuId: string, key: string) => {
-  const idPath = handleCurrentPathById(menuId);
-  
-}
-
 /** 格式化后的menu数组 */
 const formatMenus = reactive(handleMenus(menus));
 
@@ -167,4 +156,4 @@ const currentMenu = reactive({
   collapse: false,
 });
 
-export { formatMenus, currentMenu, getMenuItemByIds };
+export { formatMenus, currentMenu, handleCurrentPathById, getMenuItemByIds };

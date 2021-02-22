@@ -73,7 +73,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .navbar-container {
   width: 210px;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   /** logo样式 */
   .logo-container {
     display: flex;

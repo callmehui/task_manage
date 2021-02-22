@@ -1,21 +1,37 @@
 import { MenuItem } from "@/config/menu";
 import { formatMenus, currentMenu, getMenuItemByIds } from "@/hooks/usemenu";
 
-interface Menu {
+ interface Menu {
   id: string;
   idPath: string[];
   collapse: boolean;
   menuPath?: MenuItem[];
 }
 
-export default {
+type MenuState  = () => Menu;
+
+interface MenuModule {
+  namespaced: boolean;
+  state: MenuState;
+  getters: {};
+  mutations: {
+    setId: (state: Menu, id: string) => void;
+    setIdPath: (state: Menu, id: string[]) => void;
+    setMenuPath: (state: Menu, id: string[]) => void;
+    setCollapse: (state: Menu) => void;
+  }
+}
+
+const state: MenuState =  () => ({
+  id: currentMenu.id,
+  idPath: currentMenu.idPath,
+  collapse: currentMenu.collapse,
+  menuPath: getMenuItemByIds(formatMenus, currentMenu.idPath),
+});
+
+const menuModule: MenuModule = {
   namespaced: true,
-  state: () => ({
-    id: currentMenu.id,
-    idPath: currentMenu.idPath,
-    collapse: currentMenu.collapse,
-    menuPath: getMenuItemByIds(formatMenus, currentMenu.idPath),
-  }),
+  state,
   getters: {
     /** vue3.1版本发布前，仍旧有问题 */
   },
@@ -34,3 +50,9 @@ export default {
     },
   },
 };
+
+export {
+  Menu,
+  menuModule,
+  MenuModule,
+}

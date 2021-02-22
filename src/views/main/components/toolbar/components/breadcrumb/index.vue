@@ -17,7 +17,7 @@
               class="children-item"
               v-for="child in menu.children"
               :key="child.id"
-              @click="goToPage(child.url)"
+              @click="goToPage(child.url, child)"
             >
               {{ child.text }}
             </div>
@@ -39,10 +39,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs, watch } from "vue";
+import { defineComponent, toRefs } from "vue";
 import Icon from "@/components/icon/index.vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { MenuItem } from "@/config/menu";
+import { handleCurrentPathById } from "@/hooks/usemenu";
 
 export default defineComponent({
   name: "breadcrumb",
@@ -52,9 +54,16 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const store = useStore();
-    const { menuPath } = toRefs(store.state.menu);
+    const menu = toRefs(store.state.menu);
+    const menuPath: MenuItem[] = menu.menuPath;
 
-    const goToPage = (url: string) => {
+    const goToPage = (url: string, menu?: MenuItem) => {
+      if (menu && menu.id) {
+        const idPath = handleCurrentPathById(menu.id);
+        store.commit("menu/setId", menu.id);
+        store.commit("menu/setIdPath", idPath);
+        store.commit("menu/setMenuPath", idPath);
+      }
       router.push(url);
     };
 

@@ -1,11 +1,13 @@
 import { createStore } from "vuex";
-import MenuModule from "./modules/menu";
+import createPersistedState from "vuex-persistedstate";
+import { menuModule } from "./modules/menu";
 
 export default createStore({
   state: {},
   mutations: {},
   actions: {},
   modules: {
-    menu: MenuModule
-  }
+    menu: menuModule,
+  },
+  plugins: [createPersistedState()],
 });
