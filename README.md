@@ -1,29 +1,35 @@
-# task_manage_app
+## <center> Task Manage App </center>
 
-## Project setup
+### 使用
 
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
+### 开发环境运行
 
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### 生产环境打包
 
 ```
 yarn build
 ```
 
-### Lints and fixes files
+### 已完成功能
 
-```
-yarn lint
-```
+- [x] 项目搭建（基于 vue-cli）
+- [x] 注册功能
+- [x] 登录功能
+- [x] 导航栏功能
+- [x] 工具栏功能
 
-### Customize configuration
+## 正在开发的功能
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- [ ] 新建目标
+- [ ] 当前目标
+- [ ] 全部目标
+- [ ] 新建计划
+- [ ] 当前计划
+- [ ] 全部计划
+- [ ] 新建任务
+- [ ] 当前任务
+- [ ] 全部任务
